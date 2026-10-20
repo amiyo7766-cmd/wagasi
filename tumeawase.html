@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ほのか煎餅＆琥珀糖 詰め合わせ | 四季庵 ほのか</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* 詳細ページ固有の追加スタイル */
+  .page-header {
+    background: var(--bg2);
+    padding: 32px 0 24px;
+    border-bottom: 1px solid var(--line);
+  }
+  .breadcrumb {
+    font-size: 11px;
+    color: var(--sub);
+    margin-bottom: 12px;
+  }
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+  
+  .product-detail {
+    padding: 56px 0;
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .product-gallery .main-img {
+    aspect-ratio: 4/3;
+    width: 100%;
+    border: 1px solid var(--line);
+    position: relative;
+    background: url(e.jpeg) center / cover;
+  }
+  .product-info .tag {
+    position: static;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+  .product-title {
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: .12em;
+    line-height: 1.4;
+  }
+  .product-subtitle {
+    color: #b9794e;
+    font-size: 14px;
+    margin: 8px 0 20px;
+  }
+  .product-price {
+    font-size: 20px;
+    font-weight: 600;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 0;
+    margin-bottom: 24px;
+  }
+  .product-price span {
+    font-size: 12px;
+    font-weight: normal;
+    color: var(--sub);
+    margin-left: 8px;
+  }
+  
+  .product-desc {
+    font-size: 13px;
+    line-height: 2.1;
+    margin-bottom: 32px;
+  }
+
+  /* 詰合せ内容セクション */
+  .detail-section {
+    background: var(--bg2);
+    padding: 48px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .detail-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 24px;
+  }
+  .detail-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    padding: 24px;
+  }
+  .detail-card h4 {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--accent);
+    margin: 0 0 12px;
+    border-bottom: 1px dashed var(--line);
+    padding-bottom: 8px;
+  }
+  .detail-card p {
+    font-size: 12px;
+    line-height: 1.9;
+    color: var(--sub);
+  }
+
+  /* 仕様・商品情報テーブル */
+  .spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: 24px;
+  }
+  .spec-table th, .spec-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+  }
+  .spec-table th {
+    width: 120px;
+    background: var(--bg2);
+    font-weight: 600;
+  }
+  .spec-table td {
+    color: var(--sub);
+  }
+
+  /* 注文フォーム・アクション */
+  .cart-box {
+    background: var(--card);
+    border: 1px solid var(--line);
+    padding: 24px;
+    margin-top: 24px;
+  }
+  .qty-select {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
+  .qty-select select {
+    padding: 6px 16px;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 14px;
+  }
+  .add-cart-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: var(--ink);
+    color: var(--bg);
+    border: 1px solid var(--ink);
+    padding: 12px;
+    font-size: 13px;
+    letter-spacing: .16em;
+    cursor: pointer;
+    transition: opacity .2s;
+  }
+  .add-cart-btn:hover {
+    opacity: .85;
+  }
+
+  @media (max-width: 860px) {
+    .product-grid, .detail-cards {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><symbol id="mon" viewBox="0 0 40 40"><circle cx="20" cy="20" r="19" fill="#5a4033"/><g fill="#fbf8f2"><ellipse cx="20" cy="9" rx="5" ry="6.5"/><ellipse cx="20" cy="9" rx="5" ry="6.5" transform="rotate(72 20 20)"/><ellipse cx="20" cy="9" rx="5" ry="6.5" transform="rotate(144 20 20)"/><ellipse cx="20" cy="9" rx="5" ry="6.5" transform="rotate(216 20 20)"/><ellipse cx="20" cy="9" rx="5" ry="6.5" transform="rotate(288 20 20)"/></g><circle cx="20" cy="20" r="3" fill="#5a4033"/></symbol></svg>
+
+<header>
+  <div class="hd">
+    <a class="logo" href="index.html#top"><svg><use href="#mon"/></svg><span><b>四季庵 ほのか</b><small>SHIKIAN HONOKA</small></span></a>
+    <nav aria-label="メインメニュー"><ul>
+      <li><a href="index.html#top">ホーム</a></li><li><a href="about.html">私たちについて</a></li><li><a href="index.html#pick">商品一覧</a></li><li><a href="index.html#values">こだわり</a></li><li><a href="index.html#store">店舗案内</a></li><li><a href="index.html#store">お問い合わせ</a></li>
+    </ul></nav>
+    <div class="tools">
+      <button aria-label="カート"><svg viewBox="0 0 24 24"><path d="M3 4h2l2 11h11l2-8H6"/><circle cx="9" cy="19.5" r="1.2"/><circle cx="17" cy="19.5" r="1.2"/></svg></button>
+      <button class="menu-btn" aria-label="メニュー"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<div class="page-header">
+  <div class="wrap">
+    <div class="breadcrumb">
+      <a href="index.html">ホーム</a> &gt; <a href="index.html#pick">商品一覧</a> &gt; ほのか煎餅＆琥珀糖 詰め合わせ
+    </div>
+    <span class="eyebrow">GIFT &amp; SOUVENIR</span>
+    <h1 class="h2">商品詳細</h1>
+  </div>
+</div>
+
+<main>
+  <section class="product-detail">
+    <div class="wrap">
+      <div class="product-grid">
+        <!-- 画像エリア -->
+        <div class="product-gallery">
+          <div class="main-img" role="img" aria-label="ほのか煎餅＆琥珀糖 詰め合わせ"></div>
+        </div>
+
+        <!-- 商品情報・購入エリア -->
+        <div class="product-info">
+          <span class="tag">お土産・贈答</span>
+          <h2 class="product-title">ほのか煎餅＆琥珀糖<br>詰め合わせ</h2>
+          <p class="product-subtitle">サクッと香ばしく、 かりっと涼やか</p>
+          
+          <div class="product-price">
+            3,240円 <span>(税込)</span>
+          </div>
+
+          <div class="product-desc">
+            <p>職人特製の香ばしい醤油煎餅と、宝石のように美しい琥珀糖の詰め合わせセットです。</p>
+            <p>香ばしい醤油の風味引き立つお煎餅と、外はシャリッと中はぷるんとした繊細な食感の琥珀糖。日持ちがするため、大切な方へのご挨拶や季節の手土産に大変ご好評をいただいております。</p>
+          </div>
+
+          <div class="cart-box">
+            <div class="qty-select">
+              <label for="quantity">数量：</label>
+              <select id="quantity" name="quantity">
+                <option value="1">1 箱</option>
+                <option value="2">2 箱</option>
+                <option value="3">3 箱</option>
+                <option value="4">4 箱</option>
+                <option value="5">5 箱</option>
+              </select>
+            </div>
+            <button type="button" class="add-cart-btn">カートに入れる</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 詰合せの内容紹介 -->
+  <section class="detail-section">
+    <div class="wrap">
+      <span class="eyebrow">SET DETAILS</span>
+      <h3 class="h2">詰め合わせの内容</h3>
+      <div class="detail-cards">
+        <div class="detail-card">
+          <h4>ほのか特製 醤油煎餅（6枚）</h4>
+          <p>国産うるち米を100%使用し、職人がじっくりと網焼きで仕上げました。秘伝の有機丸大豆醤油を二度塗りすることで、サクッと軽い食感と芳醇な香ばしさを生み出しています。</p>
+        </div>
+        <div class="detail-card">
+          <h4>四季の琥珀糖（6個入）</h4>
+          <p>「食べる宝石」とも称される伝統の和菓子。純度の高いグラニュー糖と寒天を煮詰め、表面をじっくり乾燥させて仕上げました。外側のシャリッとした食感と内部のみずみずしい透明感をお楽しみいただけます。</p>
+        </div>
+      </div>

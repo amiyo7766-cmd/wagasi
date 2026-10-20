@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>極み生どら焼き | 四季庵 ほのか</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbf8f2; --bg2:#f6f0e6; --ink:#4a3a30; --sub:#7a665a; --accent:#b08a5a; --sakura:#e9a9bd;
+  --line:#e3d8c6; --card:#fffdf9; --dark:#3b3836; --hero:#2b1d14; --gold:#c49a45; --gold-dark:#9a762e;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1f1b18;--bg2:#27221e;--ink:#eadfd2;--sub:#b9a899;--line:#40372f;--card:#2b2622;--dark:#151312}}
+:root[data-theme="dark"]{--bg:#1f1b18;--bg2:#27221e;--ink:#eadfd2;--sub:#b9a899;--line:#40372f;--card:#2b2622;--dark:#151312}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif;line-height:2;letter-spacing:.06em}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+h1,h2,h3,h4,p,figure{margin:0}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+.ph{background-size:cover;background-position:center}
+
+/* header */
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.hd{display:flex;align-items:center;justify-content:space-between;height:56px;max-width:1100px;margin:0 auto;padding:0 24px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;line-height:1.1}
+.logo svg{width:34px;height:34px;flex:none}
+.logo b{font-weight:500;font-size:18px;letter-spacing:.14em;display:block}
+.logo small{font-size:8px;letter-spacing:.3em;color:var(--sub)}
+nav ul{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:12px}
+nav a{padding:6px 0;border-bottom:1px solid transparent}
+nav a[aria-current],nav a:hover{border-color:var(--ink)}
+.tools{display:flex;gap:18px;align-items:center}
+.tools button{background:none;border:0;color:inherit;cursor:pointer;padding:4px}
+.tools svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.5}
+.menu-btn{display:none!important}
+
+/* Breadcrumb */
+.breadcrumb{font-size:11px;color:var(--sub);padding:14px 0;border-bottom:1px solid var(--line);background:var(--bg)}
+.breadcrumb ul{list-style:none;margin:0;padding:0;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.breadcrumb li::after{content:"›";margin-left:8px;opacity:.6}
+.breadcrumb li:last-child::after{content:""}
+.breadcrumb a:hover{text-decoration:underline}
+
+/* Item Hero Details */
+.item-hero{padding:40px 0 56px}
+.item-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.item-gallery{position:sticky;top:80px}
+.item-main-img{aspect-ratio:4/3;border-radius:4px;overflow:hidden;border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.05);position:relative;background:url(c.jpeg) center /cover}
+.item-main-img .badge{position:absolute;top:16px;left:16px;background:var(--ink);color:var(--bg);font-size:11px;padding:4px 14px;letter-spacing:.15em;border-radius:20px}
+.item-thumbs{display:flex;gap:12px;margin-top:12px}
+.thumb{width:70px;height:70px;border-radius:4px;border:1px solid var(--line);cursor:pointer;opacity:.7;transition:all .2s;background-size:cover;background-position:center}
+.thumb.active,.thumb:hover{opacity:1;border-color:var(--accent)}
+
+/* Item Info Block */
+.item-info .eyebrow{font-size:11px;letter-spacing:.25em;color:var(--accent);display:block;margin-bottom:6px}
+.item-title{font-size:clamp(22px,3vw,30px);font-weight:600;line-height:1.4;margin-bottom:8px;letter-spacing:.12em}
+.item-subtitle{font-size:15px;color:var(--accent);margin-bottom:20px;font-weight:500;letter-spacing:.08em}
+.item-desc{font-size:13px;line-height:2.1;color:var(--ink);margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+
+/* Price Selector Box */
+.purchase-box{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:24px;margin-bottom:28px}
+.price-option{display:flex;align-items:center;justify-content:space-between;padding:12px;border:1px solid var(--line);background:var(--card);border-radius:4px;margin-bottom:10px;cursor:pointer;transition:all .2s}
+.price-option:last-of-type{margin-bottom:0}
+.price-option:hover,.price-option.selected{border-color:var(--gold);box-shadow:0 2px 8px rgba(176,138,90,.15)}
+.price-option input[type="radio"]{accent-color:var(--gold-dark);margin-right:10px;transform:scale(1.1)}
+.option-label{display:flex;align-items:center;font-size:13px;font-weight:500}
+.price-val{font-size:16px;font-weight:700;color:var(--ink)}
+.price-val small{font-size:11px;font-weight:normal;color:var(--sub)}
+
+.qty-selector{display:flex;align-items:center;gap:16px;margin:20px 0}
+.qty-selector label{font-size:12px;font-weight:600}
+.qty-btn-group{display:flex;align-items:center;border:1px solid var(--line);border-radius:4px;background:var(--card)}
+.qty-btn-group button{background:none;border:0;width:36px;height:36px;font-size:16px;cursor:pointer;color:var(--ink);display:flex;align-items:center;justify-content:center}
+.qty-btn-group button:hover{background:var(--bg2)}
+.qty-btn-group input{width:46px;height:36px;border:0;border-left:1px solid var(--line);border-right:1px solid var(--line);text-align:center;font-family:inherit;font-size:14px;background:transparent;color:var(--ink)}
+
+/* Action Buttons */
+.action-buttons{display:flex;flex-direction:column;gap:12px}
+.btn-cart{background:var(--ink);color:var(--bg);border:1px solid var(--ink);padding:16px;font-size:14px;letter-spacing:.18em;font-family:inherit;cursor:pointer;border-radius:4px;text-align:center;font-weight:600;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:10px}
+.btn-cart:hover{background:var(--dark);box-shadow:0 4px 14px rgba(0,0,0,.2)}
+.btn-reserve{background:transparent;color:var(--ink);border:1px solid var(--ink);padding:14px;font-size:13px;letter-spacing:.14em;font-family:inherit;cursor:pointer;border-radius:4px;text-align:center;transition:all .2s}
+.btn-reserve:hover{background:var(--ink);color:var(--bg)}
+.delivery-info{font-size:11px;color:var(--sub);margin-top:12px;display:flex;align-items:center;gap:6px}
+
+/* Feature Details Section */
+.sec-craft{background:var(--bg2);padding:64px 0}
+.sec-title{text-align:center;margin-bottom:48px}
+.sec-title .eyebrow{display:block;margin-bottom:4px}
+.sec-title h2{font-size:24px;font-weight:500;letter-spacing:.18em}
+
+.craft-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.craft-card{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,.03)}
+.craft-img{aspect-ratio:16/10;background-size:cover;background-position:center}
+.craft-body{padding:24px}
+.craft-num{font-size:10px;letter-spacing:.2em;color:var(--accent);display:block;margin-bottom:4px}
+.craft-card h3{font-size:16px;font-weight:600;margin-bottom:12px;letter-spacing:.1em;border-bottom:1px solid var(--line);padding-bottom:8px}
+.craft-card p{font-size:12px;line-height:2;color:var(--sub)}
+
+/* Spec Table */
+.sec-spec{padding:64px 0}
+.spec-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:24px}
+.spec-table th,.spec-table td{padding:14px 18px;border-bottom:1px solid var(--line);text-align:left;line-height:1.8}
+.spec-table th{width:25%;background:color-mix(in srgb,var(--bg2) 60%,transparent);font-weight:600;color:var(--ink)}
+.spec-table td{color:var(--sub)}
+
+/* Pairing & How to eat */
+.sec-pairing{background:var(--bg2);padding:56px 0}
+.pairing-box{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:32px}
+.pairing-img{aspect-ratio:4/3;border-radius:4px;background:url(a.jpeg) center /cover}
+.pairing-content h3{font-size:18px;font-weight:600;margin-bottom:12px;color:var(--ink)}
+.pairing-content p{font-size:12px;line-height:2;color:var(--sub);margin-bottom:16px}
+.tea-tags{display:flex;gap:8px;flex-wrap:wrap}
+.tea-tag{font-size:11px;background:var(--bg2);padding:4px 12px;border-radius:20px;border:1px solid var(--line);color:var(--ink)}
+
+/* Reviews */
+.sec-reviews{padding:64px 0}
+.review-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px}
+.review-card{background:var(--card);border:1px solid var(--line);padding:22px;border-radius:6px;position:relative}
+.review-stars{color:var(--gold);font-size:13px;margin-bottom:8px}
+.review-title{font-size:14px;font-weight:600;margin-bottom:6px}
+.review-text{font-size:12px;color:var(--sub);line-height:1.95}
+.review-meta{font-size:10px;color:var(--accent);margin-top:12px;text-align:right}
+
+/* Related Items */
+.sec-related{background:var(--bg2);padding:56px 0}
+.related-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+
+/* Notification Modal */
+.toast-msg{position:fixed;bottom:24px;right:24px;background:var(--ink);color:var(--bg);padding:14px 24px;border-radius:4px;font-size:12px;letter-spacing:.1em;box-shadow:0 10px 25px rgba(0,0,0,.2);z-index:100;display:none;align-items:center;gap:10px;animation:slideUp .3s forwards}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+/* Footer */
+footer{background:var(--dark);color:#eee;padding:32px 0 20px;font-size:11px}
+.ft{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;max-width:1100px;margin:0 auto;padding:0 24px}
+.ft ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+.ft .right{text-align:right;font-size:9px;color:#aaa;line-height:2}
+.ft .right svg{width:20px;height:20px;stroke:#eee;fill:none;stroke-width:1.5}
+
+@media (max-width:860px){
+  nav{display:none}.menu-btn{display:block!important}
+  .item-grid{grid-template-columns:1fr;gap:32px}
+  .item-gallery{position:static}
+  .craft-grid{grid-template-columns:1fr}
+  .pairing-box{grid-template-columns:1fr;padding:20px}
+  .review-grid{grid-template-columns:1fr}
+  .related-cards{grid-template-columns:1fr}
+  .spec-table th{width:35%}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="mon" viewBox="0 0 40 40">
+    <circle cx="20" cy="20" r="19" fill="#5a4033"/>
+    <g fill="#fbf8f2">
+      <ellipse cx="20" cy="9" rx="5" ry="6.5"/>
+      <ellipse cx="20" cy="9" rx="5" ry="6.5" transform="rotate(72 20 20)"/>
+      <ellipse cx="20" cy="9" rx="5" ry="6.5" transform="rotate(144 20 20)"/>
+      <ellipse cx="20" cy="9" rx="5" ry="6.5" transform="rotate(216 20 20)"/>
+      <ellipse cx="20" cy="9" rx="5" ry="6.5" transform="rotate(288 20 20)"/>
+    </g>
+    <circle cx="20" cy="20" r="3" fill="#5a4033"/>
+  </symbol>
+</svg>
+
+<!-- ヘッダー -->
+<header>
+  <div class="hd">
+    <a class="logo" href="index.html">
+      <svg><use href="#mon"/></svg>
+      <span><b>四季庵 ほのか</b><small>SHIKIAN HONOKA</small></span>
+    </a>
+    <nav aria-label="メインメニュー">
+      <ul>
+        <li><a href="index.html">ホーム</a></li>
+        <li><a href="index.html#story">私たちについて</a></li>
+        <li><a href="index.html#pick" aria-current="page">商品一覧</a></li>
+        <li><a href="index.html#values">こだわり</a></li>
+        <li><a href="index.html#store">店舗案内</a></li>
+      </ul>
+    </nav>
+    <div class="tools">
+      <button aria-label="カート" onclick="showToast('カート画面を開きます')">
+        <svg viewBox="0 0 24 24"><path d="M3 4h2l2 11h11l2-8H6"/><circle cx="9" cy="19.5" r="1.2"/><circle cx="17" cy="19.5" r="1.2"/></svg>
+      </button>
+      <button class="menu-btn" aria-label="メニュー"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<!-- パンくずリスト -->
+<nav class="breadcrumb">
+  <div class="wrap">
+    <ul>
+      <li><a href="index.html">ホーム</a></li>
+      <li><a href="index.html#pick">商品一覧</a></li>
+      <li>極み生どら焼き</li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+  <!-- 商品メイン詳細 -->
+  <section class="item-hero">
+    <div class="wrap">
+      <div class="item-grid">
+        <!-- 画像ギャラリー -->
+        <div class="item-gallery">
+          <div class="item-main-img" id="mainImg">
+            <span class="badge">看板商品</span>
+          </div>
+          <div class="item-thumbs">
+            <div class="thumb active" style="background-image:url(c.jpeg)" onclick="switchImg('c.jpeg', this)"></div>
+            <div class="thumb" style="background-image:url(f.jpeg)" onclick="switchImg('f.jpeg', this)"></div>
+            <div class="thumb" style="background-image:url(g.jpeg)" onclick="switchImg('g.jpeg', this)"></div>
+          </div>
+        </div>
+
+        <!-- 商品購入・スペック情報 -->
+        <div class="item-info">
+          <span class="eyebrow">HONOKA SPECIALTY</span>
+          <h1 class="item-title">ほのか名物「極み生どら焼き」</h1>
+          <p class="item-subtitle">ふんわり生地と、極上あんのハーモニー</p>
+          
+          <p class="item-desc">
+            毎朝手焼きするしっとりふわふわの生地に、北海道産小豆をじっくり炊き上げた自家製粒あんと、コク豊かな生クリームをたっぷり挟みました。<br>
+            口に入れた瞬間にほどける生地と、甘さ控えめの贅沢なクリーム＆あんの絶妙なバランスをお楽しみください。
+          </p>
+
+          <form onsubmit="event.preventDefault(); addToCart();">
+            <div class="purchase-box">
+              <div style="font-size:12px; font-weight:600; margin-bottom:12px;">【 バリエーションを選択 】</div>
+              
+              <label class="price-option selected" onclick="selectOption(this)">
+                <span class="option-label">
+                  <input type="radio" name="pack" value="1個" checked> 1個（単品）
+                </span>
+                <span class="price-val">380円 <small>(税込)</small></span>
+              </label>
+
+              <label class="price-option" onclick="selectOption(this)">
+                <span class="option-label">
+                  <input type="radio" name="pack" value="5個入り"> 5個入り（化粧箱入）
+                </span>
+                <span class="price-val">2,100円 <small>(税込)</small></span>
+              </label>
+
+              <label class="price-option" onclick="selectOption(this)">
+                <span class="option-label">
+                  <input type="radio" name="pack" value="10個入り"> 10個入り（化粧箱入）
+                </span>
+                <span class="price-val">4,100円 <small>(税込)</small></span>
+              </label>
+
+              <div class="qty-selector">
+                <label for="qty">数量</label>
+                <div class="qty-btn-group">
+                  <button type="button" onclick="changeQty(-1)">-</button>
+                  <input type="number" id="qty" value="1" min="1" max="20" readonly>
+                  <button type="button" onclick="changeQty(1)">+</button>
+                </div>
+              </div>
+
+              <div class="action-buttons">
+                <button type="submit" class="btn-cart">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h2l2 11h11l2-8H6"/><circle cx="9" cy="19.5" r="1.2"/><circle cx="17" cy="19.5" r="1.2"/></svg>
+                  カートに入れる
+                </button>
+                <button type="button" class="btn-reserve" onclick="showToast('店頭お取り置き予約フォームへ移行します')">
+                  店舗でのお取り置き予約
+                </button>
+              </div>
+
+              <div class="delivery-info">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                クール便（冷蔵）にてお届けいたします。全国配送可能。
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- こだわりセクション -->
+  <section class="sec-craft">
+    <div class="wrap">
+      <div class="sec-title">
+        <span class="eyebrow">CRAFTMANSHIP</span>
+        <h2>極み生どら焼き 3つのこだわり</h2>
+      </div>
+
+      <div class="craft-grid">
+        <article class="craft-card">
+          <div class="craft-img" style="background-image:url(g.jpeg)"></div>
+          <div class="craft-body">
+            <span class="craft-num">CRAFT 01</span>
+            <h3>毎朝手焼きのふわふわ生地</h3>
+            <p>職人がその日の気温や湿度に合わせて水加減を微調整。銅板でじっくり焼き上げる生地は、しっとりとして口どけ良く、ほのかな和三盆の優しさが広がります。</p>
+          </div>
+        </article>
+
+        <article class="craft-card">
+          <div class="craft-img" style="background-image:url(f.jpeg)"></div>
+          <div class="craft-body">
+            <span class="craft-num">CRAFT 02</span>
+            <h3>北海道十勝産小豆の自家製粒あん</h3>
+            <p>風味の強い北海道十勝産小豆を直火でじっくり炊き上げました。皮まで柔らかく、小豆本来の香りとすっきりとした甘さを引き出しています。</p>
+          </div>
+        </article>
+
+        <article class="craft-card">
+          <div class="craft-img" style="background-image:url(c.jpeg)"></div>
+          <div class="craft-body">
+            <span class="craft-num">CRAFT 03</span>
+            <h3>コク豊かな特製生クリーム</h3>
+            <p>粒あんの甘みと絶妙な調和をなすよう、純生クリームのコクと軽やかさを追求。甘さを控えめに仕立てることで、最後まで重くならず召し上がっていただけます。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ペアリング・美味しい召し上がり方 -->
+  <section class="sec-pairing">
+    <div class="wrap">
+      <div class="pairing-box">
+        <div class="pairing-img"></div>
+        <div class="pairing-content">
+          <span class="eyebrow">PAIRING & EAT</span>
+          <h3>至福のお茶時間をお届け</h3>
+          <p>「極み生dら焼き」は、冷やした状態でお召し上がりいただくと生クリームの口どけと粒あんの風味が引き立ちます。<br>濃いめに淹れた温かい深蒸し煎茶や、香ばしいほうじ茶との相性は抜群です。</p>
+          <div class="tea-tags">
+            <span class="tea-tag"># 深蒸し煎茶</span>
+            <span class="tea-tag"># ほうじ茶</span>
+            <span class="tea-tag"># 抹茶</span>
+            <span class="tea-tag"># 浅煎りコーヒー</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 商品詳細スペック -->
+  <section class="sec-spec">
+    <div class="wrap">
+      <div class="sec-title">
+        <span class="eyebrow">SPECIFICATION</span>
+        <h2>商品詳細・仕様</h2>
+      </div>
+
+      <table class="spec-table">
+        <tbody>
+          <tr>
+            <th>商品名</th>
+            <td>極み生どら焼き（きわみなまどらやき）</td>
+          </tr>
+          <tr>
+            <th>価格（税込）</th>
+            <td>
+              1個：380円<br>
+              5個入り（化粧箱入）：2,100円<br>
+              10個入り（化粧箱入）：4,100円
+            </td>
+          </tr>
+          <tr>
+            <th>賞味期限</th>
+            <td>要冷蔵（10℃以下）にて発送・ご購入日より3日間（解凍後は当日中にお召し上がりください）</td>
+          </tr>
+          <tr>
+            <th>特定原材料等</th>
+            <td>小麦・卵・乳成分・大豆</td>
+          </tr>
+          <tr>
+            <th>保存方法</th>
+            <td>要冷蔵（10℃以下）で保存してください</td>
+          </tr>
+          <tr>
+            <th>製造者</th>
+            <td>四季庵 ほのか（○○県○○市○○町1-2-3）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- お客様の声 -->
+  <section class="sec-reviews">
+    <div class="wrap">
+      <div class="sec-title">
+        <span class="eyebrow">REVIEWS</span>
+        <h2>お客様の声</h2>
+      </div>
+
+      <div class="review-grid">
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-title">生クリームと粒あんの相性が最高です</div>
+          <p class="review-text">生地がとにかくふわふわで、生クリームもくどくなく甘さ控えめ。手土産で持っていったらとても喜ばれました。またリピートします！</p>
+          <div class="review-meta">40代 女性 / ご購入者様</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <div class="review-title">お茶請けにぴったり</div>
+          <p class="review-text">北海道産小豆の粒あんは小豆の味がしっかりしていて美味しいです。冷たく冷やして緑茶と一緒にいただくのが毎週末の楽しみです。</p>
+          <div class="review-meta">50代 男性 / 店頭購入者様</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 関連商品 -->
+  <section class="sec-related">
+    <div class="wrap">
+      <div class="sec-title">
+        <span class="eyebrow">RECOMMEND</span>
+        <h2>こちらの商品もおすすめ</h2>
+      </div>
+
+      <div class="related-cards">
+        <article class="card">
+          <div class="img i2 ph" style="background-image:url(d.jpeg)"><span class="tag">季節限定</span></div>
+          <h3>四季の彩り 練り切り</h3>
+          <p class="cp">見て美しく、食べて美味しい旬の装い</p>
+          <p style="font-size:11.5px; color:var(--sub); line-height:1.95;">月替わりで旬の花や情景を表現する手造りの練り切りです。上品な手亡豆の味わいをお楽しみください。</p>
+          <a class="more" href="index.html#pick" style="display:inline-block; margin-top:10px; font-size:11px; border-bottom:1px solid var(--ink);">詳しく見る →</a>
+        </article>
+
+        <article class="card">
+          <div class="img i3 ph" style="background-image:url(e.jpeg)"><span class="tag">お土産・贈答</span></div>
+          <h3>ほのか煎餅＆琥珀糖 詰め合わせ</h3>
+          <p class="cp">サクッと香ばしく、 かりっと涼やか</p>
+          <p style="font-size:11.5px; color:var(--sub); line-height:1.95;">職人特製の香ばしい醤油煎餅と、宝石のように美しい琥珀糖のセット。日持ちのするご贈答用アイテムです。</p>
+          <a class="more" href="index.html#pick" style="display:inline-block; margin-top:10px; font-size:11px; border-bottom:1px solid var(--ink);">詳しく見る →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- フッター -->
+<footer>
+  <div class="ft">
+    <a class="logo" href="index.html">
+      <svg><use href="#mon"/></svg>
+      <span><b>四季庵 ほのか</b><small>SHIKIAN HONOKA</small></span>
+    </a>
+    <ul>
+      <li><a href="index.html">ホーム</a></li>
+      <li><a href="index.html#story">私たちについて</a></li>
+      <li><a href="index.html#pick">商品一覧</a></li>
+      <li><a href="index.html#values">こだわり</a></li>
+      <li><a href="index.html#store">店舗案内</a></li>
+    </ul>
+    <div class="right">
+      <a href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6"/></svg>
+      </a><br>
+      © 2025 四季庵 ほのか. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<!-- トースト通知 -->
+<div id="toast" class="toast-msg">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+  <span id="toastText">商品をカートに追加しました</span>
+</div>
+
+<script>
+// 画像切り替え
+function switchImg(src, el) {
+  document.getElementById('mainImg').style.backgroundImage = 'url(' + src + ')';
+  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// 数量変更
+function changeQty(delta) {
+  const qtyInput = document.getElementById('qty');
+  let currentVal = parseInt(qtyInput.value) || 1;
+  currentVal += delta;
+  if (currentVal < 1) currentVal = 1;
+  if (currentVal > 20) currentVal = 20;
+  qtyInput.value = currentVal;
+}
+
+// バリエーション選択スタイル
+function selectOption(el) {
+  document.querySelectorAll('.price-option').forEach(opt => opt.classList.remove('selected'));
+  el.classList.add('selected');
+  el.querySelector('input[type="radio"]').checked = true;
+}
+
+// カート追加トースト
+function addToCart() {
+  const selectedPack = document.querySelector('input[name="pack"]:checked').value;
+  const qty = document.getElementById('qty').value;
+  showToast(`「極み生どら焼き (${selectedPack})」を${qty}個カートに追加しました。`);
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toastText').textContent = msg;
+  toast.style.display = 'flex';
+  setTimeout(() => {
+    toast.style.display = 'none';
+  }, 3500);
+}
+</script>
+
+</body>
+</html>
